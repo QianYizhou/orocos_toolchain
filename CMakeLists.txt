@@ -41,6 +41,9 @@ if (NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Choose the type of build, options are: None(CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel." FORCE)
 endif()
 
+message(STATUS "cmak version: ${CMAKE_MAJOR_VERSION}:${CMAKE_MINOR_VERSION}:${CMAKE_PATCH_VERSION}")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+message(STATUS "CMAKE_EXPORT_COMPILE_COMMANDS: ${CMAKE_EXPORT_COMPILE_COMMANDS}")
 #
 # Set the target operating system. One of [lxrt gnulinux xenomai macosx win32]
 # You may leave this as-is or force a certain target by removing the if... logic.
@@ -83,7 +86,7 @@ endif()
 #
 # Enable/disable orogen and dependencies
 #
-option(BUILD_OROGEN "Build orogen and its dependencies" OFF)
+option(BUILD_OROGEN "Build orogen and its dependencies" ON)
 
 #############
 # Git magic #
@@ -139,6 +142,8 @@ function(build_external_project project)
   # Set PKG_CONFIG_PATH to be used by subprojects
   set(PKG_CONFIG_PATH "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig:$ENV{PKG_CONFIG_PATH}")
 
+  message(STATUS "project: ${project}, ARG_CMAKE_ARGS: ${ARG_CMAKE_ARGS}")
+
   ExternalProject_Add(${project}
     PREFIX ${project}
     TMP_DIR "${CMAKE_CURRENT_BINARY_DIR}/tmp"
@@ -159,6 +164,7 @@ function(build_external_project project)
       -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
       -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
       -DOROCOS_TARGET=${OROCOS_TARGET}
+      -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
       ${ARG_CMAKE_ARGS}
 
     ${ARG_UNPARSED_ARGUMENTS}
