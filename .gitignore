@@ -1,2 +1,6 @@
 build/
 install/
+
+# clangd
+.cache/
+compile_commands.json
