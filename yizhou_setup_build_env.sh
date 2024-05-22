@@ -9,5 +9,8 @@ sudo apt install ruby-dev -y
 # Install *libxml-xpath-perl*:
 sudo apt install libxml-xpath-perl -y
 
+# Install libxml-2.0
+sudo apt install libxml2-dev -y
+
 # To build LuaComponent with Lua library
 sudo apt-get install liblua5.1-0-dev -y
