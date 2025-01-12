@@ -3,6 +3,9 @@
 # Intall *boost-dev*:
 sudo apt install libboost-dev libboost-serialization-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev -y
 
+# Install for test
+sudo apt install libboost-test-dev -y
+
 # Install *ruby-dev*: 
 sudo apt install ruby-dev -y
 
