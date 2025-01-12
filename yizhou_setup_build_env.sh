@@ -1,4 +1,6 @@
-# !/bin/bash
+#!/bin/bash
+# Install build tools
+sudo apt install build-essential cmake cmake-qt-gui -y
 
 # Intall *boost-dev*:
 sudo apt install libboost-dev libboost-serialization-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev -y
